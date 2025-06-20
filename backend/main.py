@@ -9,6 +9,7 @@ from app.config import settings
 from app.database import engine
 from datetime import datetime
 import logging
+from app.routers import chat
 app = FastAPI()
 
 origins = [
@@ -30,6 +31,9 @@ app.include_router(coin.coin)
 app.include_router(item.item)
 # app.include_router(update_data.router)
 
+
+# 注册路由
+app.include_router(chat.router, prefix="/api")
 
 @app.get("/")
 def read_root():
